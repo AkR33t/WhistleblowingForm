@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report to Ethics & Compliance - Whistleblowing</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f0f2f5;
+        padding: 20px;
+        margin: 0;
+        font-size: 12px;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+      h2 {
+        color: #007bff;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      h3 {
+        color: #ff6600;
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+      .section {
+        background: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-left: 5px solid #ff6600;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      .intro-text,
+      .quote-text,
+      .section-body-text {
+        margin-bottom: 15px;
+        color: #333;
+        line-height: 1.5;
+      }
+      .quote-text {
+        font-style: italic;
+        border-left: 3px solid #ccc;
+        padding-left: 10px;
+        margin-left: 5px;
+        color: #555;
+      }
+      /* Added style for the disclaimer */
+      .disclaimer-text {
+        font-weight: bold;
+        color: #d9534f; /* A muted red for importance */
+        margin-top: 15px; /* Space after the quote */
+        margin-bottom: 20px; /* Add some space before the form */
+        padding: 10px;
+        background-color: #fdf7f7; /* Very light pink background */
+        border: 1px solid #f1c1bf; /* Soft red border */
+        border-radius: 4px;
+        line-height: 1.5;
+      }
+      .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 15px;
+      }
+      .form-group {
+        flex: 1 1 calc(33.333% - 20px); /* Default: Aim for 3 columns */
+        min-width: 200px;
+        display: flex;
+        flex-direction: column; /* Default direction */
+      }
+      .form-group.full-width {
+        flex: 1 1 100%; /* Takes full width */
+      }
+      label {
+        font-weight: bold;
+        margin-bottom: 4px;
+        font-size: 12px;
+        color: #333;
+        display: block; /* Ensure labels take block space */
+      }
+      .required {
+        color: red;
+        margin-left: 2px;
+      }
+      input[type="text"],
+      input[type="date"],
+      input[type="number"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="file"],
+      select,
+      textarea {
+        padding: 8px;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fff;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 60px;
+      }
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+      }
+      .radio-label {
+        font-weight: bold;
+        font-size: 12px;
+        margin-bottom: 6px;
+      }
+      .radio-button-container {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .radio-button {
+        position: relative;
+        padding-left: 24px;
+        cursor: pointer;
+        font-size: 12px;
+        user-select: none;
+        margin-right: 10px;
+      }
+      .radio-button input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      .radio-button__custom {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        width: 16px;
+        height: 16px;
+        border: 2px solid #555;
+        border-radius: 50%;
+        transition: all 0.2s;
+      }
+      .radio-button input:checked ~ .radio-button__custom {
+        background: #f5821f;
+        border-color: transparent;
+        transform: scale(0.85);
+        box-shadow: 0 0 10px rgba(245, 130, 31, 0.5);
+      }
+      .radio-button input:checked ~ span.label-text {
+        color: #f5821f;
+        font-weight: bold;
+      }
+      .conditional {
+        display: none; /* Hidden by default */
+        width: 100%; /* Ensure conditional rows take full width */
+      }
+
+      /* Layout Adjustment for Identified Details */
+      #identified-details .form-group {
+        flex: 1 1 calc(50% - 10px);
+        min-width: 150px;
+      }
+
+      /* Custom Checkbox CSS */
+      .custom-checkbox-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+      }
+      .custom-checkbox-group label[for="undertakingCheck"] {
+        font-weight: normal;
+        margin-bottom: 0;
+        display: inline;
+      }
+      .ios-checkbox {
+        --checkbox-size: 28px;
+        --checkbox-color: #f5821f;
+        --checkbox-bg: #ffe8d1;
+        --checkbox-border: #f5821f;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        margin-bottom: 0;
+      }
+      .ios-checkbox input {
+        display: none;
+      }
+      .checkbox-wrapper {
+        position: relative;
+        width: var(--checkbox-size);
+        height: var(--checkbox-size);
+        border-radius: 8px;
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+      }
+      .checkbox-bg {
+        position: absolute;
+        inset: 0;
+        border-radius: 8px;
+        border: 2px solid var(--checkbox-border);
+        background: white;
+        transition: all 0.2s ease;
+      }
+      .checkbox-icon {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 80%;
+        height: 80%;
+        color: white;
+        transform: scale(0);
+        transition: all 0.2s ease;
+      }
+      .check-path {
+        stroke-dasharray: 40;
+        stroke-dashoffset: 40;
+        transition: stroke-dashoffset 0.3s ease 0.1s;
+      }
+      .ios-checkbox input:checked + .checkbox-wrapper .checkbox-bg {
+        background: var(--checkbox-color);
+        border-color: var(--checkbox-color);
+      }
+      .ios-checkbox input:checked + .checkbox-wrapper .checkbox-icon {
+        transform: scale(1);
+      }
+      .ios-checkbox input:checked + .checkbox-wrapper .check-path {
+        stroke-dashoffset: 0;
+      }
+      .ios-checkbox:hover .checkbox-wrapper {
+        transform: scale(1.05);
+      }
+      .ios-checkbox:active .checkbox-wrapper {
+        transform: scale(0.95);
+      }
+      .ios-checkbox input:focus + .checkbox-wrapper .checkbox-bg {
+        box-shadow: 0 0 0 4px var(--checkbox-bg);
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      .ios-checkbox input:checked + .checkbox-wrapper {
+        animation: bounce 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      /* === Custom Checkbox CSS END === */
+
+      /* Custom Submit Button (btn-17) */
+      .btn-17,
+      .btn-17 *,
+      .btn-17:before,
+      .btn-17:after {
+        border: 0 solid;
+        box-sizing: border-box;
+      }
+      .btn-17 {
+        background-color: #213f99;
+        cursor: pointer;
+        font-weight: 900;
+        line-height: 1.5;
+        text-transform: uppercase;
+        border-radius: 99rem;
+        padding: 0.8rem 3rem;
+        position: relative;
+        overflow: hidden;
+        transition: background-color 0.3s ease;
+        display: inline-block;
+        text-align: center;
+        margin-top: 20px;
+      }
+      .btn-17:hover {
+        background-color: #f5821f;
+      }
+      .btn-17 .text {
+        display: block;
+        position: relative;
+        color: #fff !important;
+        transition: transform 0.3s;
+      }
+      @keyframes move-up-alternate {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(80%);
+        }
+        51% {
+          transform: translateY(-80%);
+        }
+        to {
+          transform: translateY(0);
+        }
+      }
+      .btn-17:hover .text {
+        animation: move-up-alternate 0.3s forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Report to Ethics & Compliance - Whistleblowing</h2>
+
+      <p class="intro-text">
+        This platform provides a secure, confidential, and supportive
+        environment for employees to responsibly report any actions or conduct
+        suspected to be illegal, unethical, or detrimental to the Al Tasnim
+        Group's interests.
+      </p>
+      <p class="quote-text">
+        "You are going to make a difference. A lot of times it won't be huge, it
+        won't be visible, but it will matter just the same."
+      </p>
+
+      <p class="disclaimer-text">
+        Important: This reporting channel is for concerns about potential
+        illegal, unethical, or policy-violating conduct. It is
+        <em>not</em> intended for personal grievances such as issues related to
+        compensation, benefits, or individual professional development.
+      </p>
+      <form id="whistleblowerForm">
+        <div class="section">
+          <h3>
+            Do you want to disclose your identity?
+            <span class="required">*</span>
+          </h3>
+          <div class="form-row">
+            <div class="form-group radio-group full-width">
+              <div class="radio-button-container">
+                <label class="radio-button">
+                  <input type="radio" name="reporterType" value="yes" />
+                  <span class="radio-button__custom"></span>
+                  <span class="label-text">YES</span>
+                </label>
+                <label class="radio-button">
+                  <input
+                    type="radio"
+                    name="reporterType"
+                    value="anonymous"
+                    required
+                    checked
+                  />
+                  <span class="radio-button__custom"></span>
+                  <span class="label-text">NO</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row conditional" id="identified-details">
+            <div class="form-group">
+              <label for="whistleblowerName"
+                >Whistleblower Name<span class="required">*</span></label
+              >
+              <input
+                id="whistleblowerName"
+                name="whistleblowerName"
+                type="text"
+              />
+            </div>
+            <div class="form-group">
+              <label for="employeeID"
+                >Whistleblower Employee ID<span class="required">*</span></label
+              >
+              <input id="employeeID" name="employeeID" type="text" />
+            </div>
+            <div class="form-group">
+              <label for="mobileNumber"
+                >Mobile Number<span class="required">*</span></label
+              >
+              <input id="mobileNumber" name="mobileNumber" type="tel" />
+            </div>
+            <div class="form-group">
+              <label for="emailID"
+                >Email ID<span class="required">*</span></label
+              >
+              <input id="emailID" name="emailID" type="email" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Details of the Suspect</h3>
+          <p class="section-body-text">
+            "Trust yourself, trust your power, that's how you stop it"
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dateOfReporting"
+                >Date of Reporting<span class="required">*</span></label
+              >
+              <input
+                id="dateOfReporting"
+                name="dateOfReporting"
+                type="date"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="dateOfIncidence"
+                >Date of Incidence<span class="required">*</span></label
+              >
+              <input
+                id="dateOfIncidence"
+                name="dateOfIncidence"
+                type="date"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="suspectName"
+                >Name of the Suspect<span class="required">*</span></label
+              >
+              <textarea
+                id="suspectName"
+                name="suspectName"
+                rows="2"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="suspectContact">Contact details of the suspect</label>
+              <textarea
+                id="suspectContact"
+                name="suspectContact"
+                rows="2"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="typeOfConcern"
+                >Type of Concern<span class="required">*</span></label
+              >
+              <select id="typeOfConcern" name="typeOfConcern" required>
+                <option value="" disabled selected>Select Concern Type</option>
+                <option value="Fraud or Financial Misconduct">
+                  Fraud or Financial Misconduct
+                </option>
+                <option value="Corruption or Bribery">
+                  Corruption or Bribery
+                </option>
+                <option value="Health, Safety, and Environmental Violations">
+                  Health, Safety, and Environmental Violations
+                </option>
+                <option value="Discrimination or Harassment">
+                  Discrimination or Harassment
+                </option>
+                <option value="Violation of Company Policies">
+                  Violation of Company Policies
+                </option>
+                <option value="Theft or Misuse of Resources">
+                  Theft or Misuse of Resources
+                </option>
+                <option value="Code of Conduct Violations">
+                  Code of Conduct Violations
+                </option>
+                <option value="Regulatory or Legal Non-Compliance">
+                  Regulatory or Legal Non-Compliance
+                </option>
+                <option value="Retaliation Against Whistleblowers">
+                  Retaliation Against Whistleblowers
+                </option>
+                <option value="other">Other (Please Specify)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row conditional" id="otherConcernGroup">
+            <div class="form-group full-width">
+              <label for="otherConcernSpecify"
+                >Please Specify Other Concern<span class="required"
+                  >*</span
+                ></label
+              >
+              <textarea
+                id="otherConcernSpecify"
+                name="otherConcernSpecify"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="misconductDetails"
+                >What misconduct / improper activity occurred?<span
+                  class="required"
+                  >*</span
+                ></label
+              >
+              <textarea
+                id="misconductDetails"
+                name="misconductDetails"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="individualsInvolved"
+                >Number of individuals involved and their details<span
+                  class="required"
+                  >*</span
+                ></label
+              >
+              <textarea
+                id="individualsInvolved"
+                name="individualsInvolved"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="whenWhereHow"
+                >When and where did it happen and when/how did you notice
+                it?<span class="required">*</span></label
+              >
+              <textarea
+                id="whenWhereHow"
+                name="whenWhereHow"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="otherParties"
+                >Is there any other parties involved (External) other than the
+                suspects?</label
+              >
+              <textarea
+                id="otherParties"
+                name="otherParties"
+                rows="4"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="evidenceAttachments">Evidence Attachments</label>
+              <input
+                id="evidenceAttachments"
+                name="evidenceAttachments"
+                type="file"
+                multiple
+              />
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h3>Undertaking</h3>
+          <div class="form-row">
+            <div class="form-group full-width custom-checkbox-group">
+              <label class="ios-checkbox">
+                <input
+                  type="checkbox"
+                  id="undertakingCheck"
+                  name="undertakingCheck"
+                  required
+                />
+                <div class="checkbox-wrapper">
+                  <div class="checkbox-bg"></div>
+                  <svg class="checkbox-icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                      class="check-path"
+                      d="M4 12L10 18L20 6"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+              </label>
+              <label for="undertakingCheck">
+                I hereby declare that the information set forth in this report
+                is submitted in good faith and is, to the best of my knowledge
+                and belief, true and accurate. I affirm that I have had the
+                opportunity to review Al Tasnim Group Whistleblowing Policy and
+                I am submitting this information voluntarily.<span
+                  class="required"
+                  >*</span
+                >
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-17">
+          <span class="text-container"
+            ><span class="text">Submit Report</span></span
+          >
+        </button>
+      </form>
+    </div>
+
+    <script>
+      // Function to set default reporting date to today
+      function setDefaultReportingDate() {
+        const today = new Date();
+        // Set the date to 05-May-2025 as requested in the original script
+        const specificDate = new Date(2025, 4, 5); // Month is 0-indexed (0=Jan, 4=May)
+        const formattedDateValue = specificDate.toISOString().split("T")[0]; // YYYY-MM-DD for input value
+
+        const dateInput = document.getElementById("dateOfReporting");
+        if (dateInput) {
+          dateInput.value = formattedDateValue;
+        }
+      }
+
+      // Conditional display logic for Reporter Information
+      const reporterTypeRadios = document.querySelectorAll(
+        'input[name="reporterType"]'
+      );
+      const identifiedDetailsGroup =
+        document.getElementById("identified-details");
+      const identifiedInputs = identifiedDetailsGroup.querySelectorAll("input");
+
+      function toggleIdentifiedDetails() {
+        const selectedValue = document.querySelector(
+          'input[name="reporterType"]:checked'
+        ).value;
+        identifiedDetailsGroup.style.display =
+          selectedValue === "yes" ? "flex" : "none";
+        identifiedInputs.forEach((input) => {
+          input.required = selectedValue === "yes";
+          if (selectedValue !== "yes") {
+            input.value = "";
+          }
+        });
+      }
+
+      // Logic for Type of Concern dropdown
+      const typeOfConcernSelect = document.getElementById("typeOfConcern");
+      const otherConcernGroup = document.getElementById("otherConcernGroup");
+      const otherConcernTextarea = document.getElementById(
+        "otherConcernSpecify"
+      );
+
+      function toggleOtherConcern() {
+        if (!typeOfConcernSelect || !otherConcernGroup || !otherConcernTextarea)
+          return;
+
+        if (typeOfConcernSelect.value === "other") {
+          otherConcernGroup.style.display = "flex";
+          otherConcernTextarea.required = true;
+        } else {
+          otherConcernGroup.style.display = "none";
+          otherConcernTextarea.required = false;
+          otherConcernTextarea.value = "";
+        }
+      }
+
+      // Attach event listeners
+      reporterTypeRadios.forEach((radio) => {
+        radio.addEventListener("change", toggleIdentifiedDetails);
+      });
+
+      if (typeOfConcernSelect) {
+        typeOfConcernSelect.addEventListener("change", toggleOtherConcern);
+      }
+
+      // Initial setup on page load
+      window.addEventListener("load", () => {
+        setDefaultReportingDate(); // This keeps the original script's behaviour of setting May 5, 2025
+        toggleIdentifiedDetails();
+        toggleOtherConcern();
+      });
+    </script>
+  </body>
+</html>
